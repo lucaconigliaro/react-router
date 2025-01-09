@@ -35,3 +35,7 @@
     max-height: 120px;
     object-fit: cover;
   }
+
+  nav .active {
+    color: lightgreen;
+  }
