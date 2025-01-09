@@ -17,11 +17,10 @@ function MainNav() {
     ];
 
     return (
-
         <nav>
             <ul>
                 {menu.map((curItem) => (
-                    <li>
+                    <li key={curItem.title}>
                         <NavLink to={curItem.path}>{curItem.title}</NavLink>
                     </li>
                 ))}

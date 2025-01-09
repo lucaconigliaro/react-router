@@ -12,7 +12,7 @@ const initialFormData = {
 const apiUrl = import.meta.env.VITE_API_URL;
 
 function PostsPage() {
-    const [article, setArticle] = useState([]);
+  const [article, setArticle] = useState([]);
   const [formData, setFormData] = useState(initialFormData);
 
   useEffect(() => {
@@ -45,8 +45,8 @@ function PostsPage() {
   };
 
   const handleInputChange = (event) => {
-    const keyToChange = event.target.name; 
-    const newValue = event.target.value; 
+    const keyToChange = event.target.name;
+    const newValue = event.target.value;
 
     const newData = {
       ...formData,
@@ -56,76 +56,76 @@ function PostsPage() {
     setFormData(newData);
   };
 
-    return (
-        <div className="container">
-        <section>
-          <h2>Nuovi Articoli</h2>
-          {article.length > 0 ? (
-            <div className="card-container">
-              {article.map((curArticle) => (
-                <div className="col" key={curArticle.id}>
-                  <AppCard post={curArticle} onCancel={() => cancel(curArticle.id)} />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p>Nessun articolo</p>
-          )}
-        </section>
+  return (
+    <div className="container">
+      <section>
+        <h2>Nuovi Articoli</h2>
+        {article.length > 0 ? (
+          <div className="card-container">
+            {article.map((curArticle) => (
+              <div className="col" key={curArticle.id}>
+                <AppCard post={curArticle} onCancel={() => cancel(curArticle.id)} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>Nessun articolo</p>
+        )}
+      </section>
 
-        <section>
-          <h3>Aggiungi un nuovo articolo</h3>
-          <form onSubmit={handleArticleForm}>
-            <div>
-              <label htmlFor="articleTitle">Nome dell'articolo</label>
-              <input
-                id="articleTitle"
-                type="text"
-                className="form-control mb-2"
-                placeholder="Inserisci il titolo dell'articolo"
-                name="titolo"
-                value={formData.titolo}
-                onChange={handleInputChange}
-              />
-            </div>
+      <section>
+        <h3>Aggiungi un nuovo articolo</h3>
+        <form onSubmit={handleArticleForm}>
+          <div>
+            <label htmlFor="articleTitle">Nome dell'articolo</label>
+            <input
+              id="articleTitle"
+              type="text"
+              className="form-control mb-2"
+              placeholder="Inserisci il titolo dell'articolo"
+              name="titolo"
+              value={formData.titolo}
+              onChange={handleInputChange}
+            />
+          </div>
 
-            <div>
-              <label htmlFor="articleImage">Immagine dell'articolo</label>
-              <input
-                id="articleImage"
-                type="text"
-                className="form-control mb-2"
-                placeholder="Inserisci l'immagine dell'articolo"
-                name="immagine"
-                value={formData.immagine}
-                onChange={handleInputChange}
-              />
-            </div>
+          <div>
+            <label htmlFor="articleImage">Immagine dell'articolo</label>
+            <input
+              id="articleImage"
+              type="text"
+              className="form-control mb-2"
+              placeholder="Inserisci l'immagine dell'articolo"
+              name="immagine"
+              value={formData.immagine}
+              onChange={handleInputChange}
+            />
+          </div>
 
-            <div>
-              <label htmlFor="articleContent">Contenuto dell'articolo</label>
-              <textarea
-                id="articleContent"
-                className="form-control mb-2"
-                placeholder="Inserisci il contenuto dell'articolo"
-                name="contenuto"
-                value={formData.contenuto}
-                onChange={handleInputChange}
-              ></textarea>
-            </div>
+          <div>
+            <label htmlFor="articleContent">Contenuto dell'articolo</label>
+            <textarea
+              id="articleContent"
+              className="form-control mb-2"
+              placeholder="Inserisci il contenuto dell'articolo"
+              name="contenuto"
+              value={formData.contenuto}
+              onChange={handleInputChange}
+            ></textarea>
+          </div>
 
-            <button
-              type="submit"
-              className="btn btn-success mt-2"
-              disabled={!formData.titolo || !formData.contenuto}
-            >
-              Invia
-            </button>
+          <button
+            type="submit"
+            className="btn btn-success mt-2"
+            disabled={!formData.titolo || !formData.contenuto}
+          >
+            Invia
+          </button>
 
-          </form>
-        </section>
-      </div>
-    )
+        </form>
+      </section>
+    </div>
+  );
 }
 
 export default PostsPage;
