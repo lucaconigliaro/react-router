@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import AppCard from "./AppCard";
+import AppCard from "../../components/AppCard";
+import { Link } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -29,6 +30,12 @@ function Posts() {
 
     return (
         <div className="container">
+            <div className="my-3">
+                <Link className="btn btn-light" to="/posts/create">
+                    Aggiungi un nuovo Articolo
+                </Link>
+            </div>
+
             <section>
                 <h2>Nuovi Articoli</h2>
                 {article.length > 0 ? (

@@ -1,7 +1,9 @@
 function HomePage() {
     return (
         <main>
-            <h1>Il nostro Blog!</h1>
+            <div className="container my-3">
+                <h1>Il nostro Blog!</h1>
+            </div>
         </main>
     );
 }

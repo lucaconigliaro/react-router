@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -10,31 +11,35 @@ const initialFormData = {
     contenuto: "",
 };
 
+function CreatePost() {
+    const [formData, setFormData] = useState(initialFormData);
+    const navigate = useNavigate(); // Hook per gestire la navigazione
 
-const handleArticleForm = (event) => {
-    event.preventDefault();
-    axios.post(`${apiUrl}/posts`, formData)
-        .then((resp) => {
-            const newArray = [...article, resp.data];
-            setArticle(newArray);
-            setFormData(initialFormData);
-        })
-};
-
-const handleInputChange = (event) => {
-    const keyToChange = event.target.name;
-    const newValue = event.target.value;
-
-    const newData = {
-        ...formData,
-        [keyToChange]: newValue
+    const handleArticleForm = (event) => {
+        event.preventDefault();
+        axios.post(`${apiUrl}/posts`, formData)
+            .then((resp) => {
+                const createdPost = resp.data;
+                setFormData(initialFormData);
+                navigate(`/posts/${createdPost.id}`); // Reindirizza alla pagina del nuovo post
+            })
+            .catch((err) => {
+                console.error("Errore durante la creazione del post:", err);
+            });
     };
 
-    setFormData(newData);
-};
+    const handleInputChange = (event) => {
+        const keyToChange = event.target.name;
+        const newValue = event.target.value;
 
+        const newData = {
+            ...formData,
+            [keyToChange]: newValue,
+        };
 
-function CreatePost() {
+        setFormData(newData);
+    };
+
     return (
         <div className="container">
             <section>
@@ -85,11 +90,10 @@ function CreatePost() {
                     >
                         Invia
                     </button>
-
                 </form>
             </section>
         </div>
-    )
+    );
 }
 
 export default CreatePost;

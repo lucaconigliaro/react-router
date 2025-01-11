@@ -1,7 +1,9 @@
 function AboutUs() {
     return (
         <main>
-            <h1>ABOUT US</h1>
+            <div className="container my-3">
+                <h1>ABOUT US</h1>
+            </div>
         </main>
     );
 }
