@@ -17,14 +17,18 @@ function MainNav() {
     ];
 
     return (
-        <nav>
-            <ul>
-                {menu.map((curItem) => (
-                    <li key={curItem.title}>
-                        <NavLink to={curItem.path}>{curItem.title}</NavLink>
-                    </li>
-                ))}
-            </ul>
+        <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+            <div className="container-fluid">
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {menu.map((curItem) => (
+                            <li className="mx-2" key={curItem.title}>
+                                <NavLink to={curItem.path}>{curItem.title}</NavLink>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
         </nav>
     );
 }
